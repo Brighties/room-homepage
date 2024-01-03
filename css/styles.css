@@ -1,0 +1,43 @@
+@import "./reset.css";
+
+/* main container style*/
+.entire-page-container {
+  display: grid;
+  /* row-gap: 1.5rem; */
+  grid-template-columns: 1fr;
+}
+@media (min-width: 900px) {
+  .entire-page-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .image-hero-1-container {
+    grid-column: span 2;
+    border: 2px solid green;
+  }
+  .article-1 {
+    grid-column: span 2;
+  }
+  .article-2 {
+    grid-column: span 2;
+  }
+  .attribution {
+    grid-column: span 4;
+    text-align: center;
+  }
+}
+.image-hero-1-container {
+  position: relative;
+}
+.nav {
+  position: absolute;
+  top: 0;
+}
+.nav__list {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, 1fr);
+}
+.nav__list-item a {
+  text-decoration: none;
+  color: #fff;
+}
