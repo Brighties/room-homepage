@@ -1,43 +1,189 @@
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700&display=swap");
 @import "./reset.css";
+@import "./variables.css";
+
+body {
+  font-size: var(--font-large);
+  font-family: "League Spartan", sans-serif;
+}
 
 /* main container style*/
 .entire-page-container {
   display: grid;
-  /* row-gap: 1.5rem; */
   grid-template-columns: 1fr;
+  color: hsl(var(--dark-gray));
 }
-@media (min-width: 900px) {
+.header {
+  color: initial;
+}
+.banner-header {
+  color: hsl(var(--white));
+  text-align: center;
+  padding-bottom: 4px;
+}
+.banner-container,
+.figure-2,
+.figure-3 {
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: center;
+  background-size: cover;
+}
+.banner-container {
+  background-image: url(../images/desktop-image-hero-1.jpg);
+}
+.figure-2 {
+  background-image: url(../images/image-about-dark.jpg);
+}
+.figure-3 {
+  background-image: url(../images/image-about-light.jpg);
+}
+img {
+  height: 100%;
+}
+.article {
+  align-self: center;
+  padding: 6rem 10vw;
+}
+.attribution {
+  text-align: center;
+  padding-block: var(--spacing-small);
+  color: initial;
+}
+
+/* NAVIGATION */
+.nav {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-very-small);
+  border: 2px solid red;
+  align-items: center;
+  justify-content: left;
+  padding-block: var(--spacing-very-small);
+  overflow: hidden;
+}
+
+.nav__list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-large);
+  white-space: nowrap;
+  color: hsl(var(--white));
+  padding-bottom: 4px;
+}
+.nav__list {
+  transform: translateY(-200%);
+}
+
+/* add this 'visible' class to visible when clicked */
+.nav__list.visible {
+  transform: translateY(0%) translateX(-20%);
+}
+/* add the 'hide' class when the menu bar is clicked */
+.banner-header.hide {
+  transform: translateY(100%);
+}
+.nav__list-item a {
+  text-decoration: none;
+  color: var(--white);
+}
+/* ARTICLE 1 */
+.article-1-header {
+  font-size: 4rem;
+  margin-block-end: var(--spacing-large);
+}
+
+.btn {
+  text-transform: uppercase;
+  letter-spacing: var(--spacing-small);
+  border: transparent;
+  background: transparent;
+  cursor: pointer;
+}
+.shop-btn {
+  margin-block-start: 3rem;
+  font-weight: 600;
+  white-space: nowrap; /* so that the pseudo-element does not wrap */
+}
+.shop-btn::after {
+  content: url(/images/icon-arrow.svg);
+}
+
+/* ABOUT FURNITURE */
+.about-product-header {
+  text-transform: uppercase;
+  letter-spacing: var(--spacing-very-small);
+  margin-block-end: var(--spacing-large);
+  word-spacing: var(--spacing-very-small);
+  font-size: var(--font-small);
+}
+
+/* CAROUSEL CONTAINER */
+.article-1 {
+  position: relative;
+  min-height: 350px; /* set to be same size as the image on its left */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.carousel-container {
+  position: absolute;
+  bottom: 0%;
+  right: 100%;
+  background: hsl(var(--black));
+  max-width: max-content;
+  display: flex;
+  align-items: center;
+  padding-top: 15px;
+  padding-bottom: 10px;
+}
+.left-navigator {
+  padding-inline: 2rem;
+}
+.right-navigator {
+  padding-inline: 2rem;
+}
+
+/* 
+=================================
+  MEDIA QUERY 
+=================================
+*/
+@media (min-width: 600px) {
   .entire-page-container {
     grid-template-columns: repeat(4, 1fr);
   }
-  .image-hero-1-container {
+
+  .banner-container {
     grid-column: span 2;
-    border: 2px solid green;
   }
   .article-1 {
     grid-column: span 2;
+  }
+  .article {
+    padding-inline: var(--spacing-extra-large);
+    padding-block: var(--spacing-small);
   }
   .article-2 {
     grid-column: span 2;
   }
   .attribution {
     grid-column: span 4;
-    text-align: center;
+  }
+
+  .banner-header {
+    transform: translateY(-100%);
   }
 }
-.image-hero-1-container {
-  position: relative;
+@media (min-width: 1200px) {
+  .article {
+    padding-inline: 6rem;
+  }
+  .carousel-container {
+    left: 0%;
+    right: 0%;
+  }
 }
-.nav {
-  position: absolute;
-  top: 0;
-}
-.nav__list {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(4, 1fr);
-}
-.nav__list-item a {
-  text-decoration: none;
-  color: #fff;
-}
+
+/* ============================= */
