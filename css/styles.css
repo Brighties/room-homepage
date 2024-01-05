@@ -16,11 +16,7 @@ body {
 .header {
   color: initial;
 }
-.banner-header {
-  color: hsl(var(--white));
-  text-align: center;
-  padding-bottom: 4px;
-}
+
 .banner-container,
 .figure-2,
 .figure-3 {
@@ -53,40 +49,89 @@ img {
 
 /* NAVIGATION */
 .nav {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-very-small);
-  border: 2px solid red;
+  display: flex;
   align-items: center;
-  justify-content: left;
-  padding-block: var(--spacing-very-small);
+  gap: 10vw;
+  color: hsl(var(--white));
+  padding-block: var(--spacing-large);
+  padding-inline-start: var(--spacing-small);
   overflow: hidden;
 }
+.menu-icon {
+  cursor: pointer;
+  justify-self: left;
+  transition: all 300ms ease-in-out;
+}
+.menu-icon:hover {
+  opacity: 0.6;
+}
+.banner-header {
+  flex-grow: 0.7;
+  opacity: 1;
 
-.nav__list {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--spacing-large);
-  white-space: nowrap;
   color: hsl(var(--white));
+  text-align: center;
+  padding-bottom: 4px;
+  transition: all 300ms ease-in-out;
+}
+.nav__list {
+  display: flex;
+  gap: var(--spacing-large);
+  transition: all 0.3s ease-in-out;
+  display: none;
+  transform: translateY(-500%);
   padding-bottom: 4px;
 }
-.nav__list {
-  transform: translateY(-200%);
+.nav__list-item {
+  position: relative;
+  padding-block-end: var(--spacing-very-small);
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+}
+.nav__list-item:hover {
+  opacity: 0.6;
+}
+.nav__list-item.active:after {
+  content: " ";
+  width: 50%;
+  height: 2px;
+  position: absolute;
+  margin-inline: 25%; /* magic number to center the pseudo element */
+  bottom: 0;
+  left: 0;
+  background-color: hsl(var(--white));
 }
 
-/* add this 'visible' class to visible when clicked */
-.nav__list.visible {
-  transform: translateY(0%) translateX(-20%);
+/* when the menu bar is clicked,  the header text should disappear */
+.nav.open .banner-header {
+  display: none;
+  opacity: 0;
 }
-/* add the 'hide' class when the menu bar is clicked */
-.banner-header.hide {
-  transform: translateY(100%);
+.nav.open .nav__list {
+  transform: translateY(0);
+  transition: transform 300ms ease-in-out;
+  display: flex;
 }
+.nav.open .menu-icon {
+  transform: rotate(360deg);
+}
+
 .nav__list-item a {
   text-decoration: none;
   color: var(--white);
 }
+
+.navigator {
+  padding-top: 15px;
+  padding-bottom: 10px;
+  transition: all 300ms ease-in-out;
+}
+.navigator:hover {
+  background: hsl(var(--white), 0.2);
+  cursor: pointer;
+}
+/*=== end of navigation === */
+
 /* ARTICLE 1 */
 .article-1-header {
   font-size: 4rem;
@@ -135,8 +180,6 @@ img {
   max-width: max-content;
   display: flex;
   align-items: center;
-  padding-top: 15px;
-  padding-bottom: 10px;
 }
 .left-navigator {
   padding-inline: 2rem;
@@ -171,12 +214,23 @@ img {
   .attribution {
     grid-column: span 4;
   }
-
-  .banner-header {
-    transform: translateY(-100%);
-  }
 }
 @media (min-width: 1200px) {
+  /* 2- factor-authentication, whether the NAV element contains the class of "open" or not, do not display the menu-icon */
+  .nav.open .menu-icon,
+  .nav .menu-icon {
+    display: none;
+  }
+  .nav.open .nav__list,
+  .nav .nav__list {
+    display: flex;
+    transform: translateY(0);
+  }
+
+  .banner-header {
+    text-align: left;
+    flex-grow: 0;
+  }
   .article {
     padding-inline: 6rem;
   }
