@@ -35,26 +35,32 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
   //add event listeners to the navigators
   const bannerContainer = document.querySelector(".banner-container");
-  const navigators = document.querySelectorAll(".navigator");
-  navigators.forEach((navigator) => {
-    let imageCount = 0;
-    navigator.addEventListener("click", (e) => {
-      let lastArrayElement = imageArray.length - 1;
-      if (e.target.classList.contains("left-navigator")) {
-        imageCount = imageCount - 1;
-      } else {
-        imageCount = imageCount + 1;
-      }
+  const rightNavigator = document.querySelector(".right-navigator");
+  const leftNavigator = document.querySelector(".left-navigator");
 
-      if (imageCount < 0) {
-        imageCount = 0;
-      }
-      if (imageCount > lastArrayElement) {
-        imageCount = lastArrayElement;
-      }
-      //   let value = `url${imageArray[imageCount]}`;
-      bannerContainer.style.backgroundImage = `url("${imageArray[imageCount]}")`;
-      console.log(imageCount);
-    });
+  let imageCount = 0;
+  let lastArrayElement = imageArray.length - 1;
+
+  // add eventlistener to the right navigator
+  rightNavigator.addEventListener("click", () => {
+    if (imageCount < lastArrayElement) {
+      imageCount += 1;
+    } else {
+      imageCount = 0;
+    }
+    bannerContainer.style.backgroundImage = `url("${imageArray[imageCount]}")`;
+    console.log(imageCount);
   });
+
+  // add eventlistener to the left navigator
+  leftNavigator.addEventListener("click", () => {
+    if (imageCount > 0) {
+      imageCount = imageCount - 1;
+    } else {
+      imageCount = lastArrayElement;
+    }
+    bannerContainer.style.backgroundImage = `url("${imageArray[imageCount]}")`;
+    console.log(imageCount);
+  });
+  // logic to change the content of the text when the navigators are clicked
 });

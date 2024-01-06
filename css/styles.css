@@ -27,7 +27,9 @@ body {
 }
 .banner-container {
   background-image: url(../images/desktop-image-hero-1.jpg);
+  transition: background-image 0.3s ease-in-out;
 }
+
 .figure-2 {
   background-image: url(../images/image-about-dark.jpg);
 }
@@ -230,6 +232,7 @@ img {
   .banner-header {
     text-align: left;
     flex-grow: 0;
+    font-size: 3rem;
   }
   .article {
     padding-inline: 6rem;
@@ -237,6 +240,9 @@ img {
   .carousel-container {
     left: 0%;
     right: 0%;
+  }
+  .banner-container {
+    padding-block-start: var(--spacing-large);
   }
 }
 
