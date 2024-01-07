@@ -151,6 +151,11 @@ img {
   margin-block-start: 3rem;
   font-weight: 600;
   white-space: nowrap; /* so that the pseudo-element does not wrap */
+  transition: all 300ms ease-in-out;
+}
+.shop-btn:hover {
+  color: hsl(var(--dark-gray));
+  padding-inline-start: var(--spacing-large);
 }
 .shop-btn::after {
   content: url(/images/icon-arrow.svg);
