@@ -24,10 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // still working on this section
-
   /** =========================  */
-  // create an array that contains the images
+  // IMAGE SLIDER SECTION
+  // create an array that contains the images urls
   const imageArray = [
     "../images/desktop-image-hero-1.jpg",
     "../images/desktop-image-hero-2.jpg",
@@ -43,29 +42,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // add eventlistener to the right navigator
   rightNavigator.addEventListener("click", () => {
-    if (imageCount < lastArrayElement) {
-      imageCount += 1;
-    } else {
-      imageCount = 0;
-    }
-    updateArticleContent;
-    bannerContainer.style.backgroundImage = `url("${imageArray[imageCount]}")`;
-    updateArticleContent(imageCount);
-    console.log(imageCount);
+    navigateSlider(1); // 1 means that the slider should move right, can decide to use a text or anything of choice ...
   });
 
   // add eventlistener to the left navigator
   leftNavigator.addEventListener("click", () => {
-    if (imageCount > 0) {
-      imageCount = imageCount - 1;
-    } else {
-      imageCount = lastArrayElement;
-    }
+    navigateSlider(-1); // -1 means that the slider should move left, can decide to use a text or anything of choice ...
+  });
 
+  // using keyboard keys to change the images and textContent
+  // add event listener to the document itself . . .
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowRight") {
+      navigateSlider(1);
+    } else if (event.key === "ArrowLeft") {
+      navigateSlider(-1);
+    }
+  });
+
+  const navigateSlider = (direction) => {
+    if (direction === 1 && imageCount < lastArrayElement) {
+      imageCount += 1;
+    } else if (direction === -1 && imageCount > 0) {
+      imageCount -= 1;
+    } else if (direction === -1) {
+      imageCount = lastArrayElement;
+    } else {
+      imageCount = 0;
+    }
     bannerContainer.style.backgroundImage = `url("${imageArray[imageCount]}")`;
     updateArticleContent(imageCount);
-    console.log(imageCount);
-  });
+  };
+
   // logic to change the content of the text when the navigators are clicked
   const articleHeader = document.querySelector(".article-1-header");
   articleParagraph = document.querySelector(".article-1-text");

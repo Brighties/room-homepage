@@ -26,11 +26,11 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![](images/Screenshot-Room-Homepage.png)
 
 ### Links
 
-- Solution URL: [Click here]()
+- Solution URL: [Click here](https://github.com/Brighties/room-homepage)
 - Live Site URL: [Click here](https://tourmaline-boba-e9c45c.netlify.app/)
 
 ## My process
